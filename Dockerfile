@@ -9,16 +9,11 @@ USER root
 
 # Used to set the docker group ID
 # Set to 497 by default, which is the group ID used by AWS Linux ECS Instance
-#ARG DOCKER_GID=497
+ARG DOCKER_GID=497
 
 # Create Docker Group with GID
 # Set default value of 497 if DOCKER_GID set to blank string by Docker Compose
-#RUN groupadd -g ${DOCKER_GID:-497} docker
-
-# Used to control Docker and Docker Compose versions installed
-# NOTE: As of February 2016, AWS Linux ECS only supports Docker 1.9.1
-#ARG DOCKER_VERSION=17.06.0
-#ARG DOCKER_COMPOSE=1.14.0
+RUN groupadd -g ${DOCKER_GID:-497} docker
 
 RUN apt-get update -y && \
     apt-get install apt-transport-https ca-certificates curl gnupg2 software-properties-common python-dev python-setuptools gcc make libssl-dev -y && \
@@ -34,8 +29,8 @@ RUN add-apt-repository \
 
 RUN apt-get update -y && \
     apt-get install docker-ce=17.06.0~ce-0~debian -y && \
-    usermod -aG staff jenkins
-#    usermod -aG docker jenkins && \
+    usermod -aG staff jenkins && \
+    usermod -aG docker jenkins
 #    usermod -aG users jenkins
 
 # Install Docker Compose
