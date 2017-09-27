@@ -19,7 +19,7 @@
     "EC2Instance": {
       "Type": "AWS::EC2::Instance",
       "Properties": {
-        "ImageId": "ami-0a85946e",
+        "ImageId": "ami-cb1101af",
         "InstanceType": "t2.micro",
         "SubnetId": { "Ref": "SubnetId" },
         "KeyName": { "Ref": "KeyName" },
@@ -129,7 +129,7 @@
           {
             "Name": "jenkins",
             "Image": "phrasebooklearner/jenkins:latest",
-            "Memory": 995,
+            "Memory": 990,
             "PortMappings": [ { "ContainerPort": 8080, "HostPort": 8080 } ],
             "MountPoints": [
               {
